@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# archdawn: Setup dotfiles for Arch Linux
+# Fetches dotfiles from repository and links them to appropriate locations
+
+DOTFILES_REPO="https://github.com/heraclitan/dotfiles.git"
+DOTFILES_DIR="/tmp/heraclitan-dotfiles"
+
+# Define colors
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+# Fetch dotfiles repository
+fetch_dotfiles() {
+    echo -e "${BLUE}→ Fetching dotfiles repository...${RESET}"
+    rm -rf "$DOTFILES_DIR"
+    git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+}
+
+# Link dotfiles to appropriate locations
+link_dotfiles() {
+    echo -e "${BLUE}→ Creating directory structure...${RESET}"
+    # Create necessary directories
+    mkdir -p "$HOME/.config/nvim/lua/core"
+    mkdir -p "$HOME/.config/nvim/lua/plugins"
+    mkdir -p "$HOME/.config/shell"
+    mkdir -p "$HOME/.config/zsh"
+
+    echo -e "${BLUE}→ Linking Neovim configuration...${RESET}"
+    # Link Neovim configuration
+    ln -sf "$DOTFILES_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/core/autocmds.lua" "$HOME/.config/nvim/lua/core/autocmds.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/core/keymaps.lua" "$HOME/.config/nvim/lua/core/keymaps.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/core/lazy.lua" "$HOME/.config/nvim/lua/core/lazy.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/core/options.lua" "$HOME/.config/nvim/lua/core/options.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/plugins/colorscheme.lua" "$HOME/.config/nvim/lua/plugins/colorscheme.lua"
+    ln -sf "$DOTFILES_DIR/.config/nvim/lua/plugins/treesitter.lua" "$HOME/.config/nvim/lua/plugins/treesitter.lua"
+
+    echo -e "${BLUE}→ Linking shell configuration...${RESET}"
+    # Link shell configuration
+    ln -sf "$DOTFILES_DIR/.config/shell/profile" "$HOME/.config/shell/profile"
+
+    echo -e "${BLUE}→ Linking user directories configuration...${RESET}"
+    # Link user-dirs.dirs (corrected location)
+    ln -sf "$DOTFILES_DIR/.config/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
+
+    echo -e "${BLUE}→ Linking Zsh configuration...${RESET}"
+    # Link Zsh configuration
+    ln -sf "$DOTFILES_DIR/.config/zsh/.zshrc" "$HOME/.config/zsh/.zshrc"
+
+    echo -e "${BLUE}→ Setting up profile links...${RESET}"
+    # Link .zprofile to point to .config/shell/profile
+    ln -sf "$HOME/.config/shell/profile" "$HOME/.zprofile"
+}
+
+# Main function
+main() {
+    echo -e "${BOLD}╭───────────────────────────────────╮${RESET}"
+    echo -e "${BOLD}│        ${GREEN}Archdawn${RESET}${BOLD} - Dotfiles Setup       │${RESET}"
+    echo -e "${BOLD}╰───────────────────────────────────╯${RESET}"
+    echo ""
+
+    fetch_dotfiles
+    link_dotfiles
+
+    echo ""
+    echo -e "${BOLD}╭───────────────────────────────────╮${RESET}"
+    echo -e "${BOLD}│      ${GREEN}✓ Dotfiles Setup Complete${RESET}${BOLD}      │${RESET}"
+    echo -e "${BOLD}╰───────────────────────────────────╯${RESET}"
+}
+
+# Execute
+main
