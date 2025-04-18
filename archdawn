@@ -58,7 +58,7 @@ link_dotfiles() {
 # Main function
 main() {
     echo -e "${BOLD}╭─────────────────────────────────╮${RESET}"
-    echo -e "${BOLD}│      ${GREEN}Archdawn${RESET}${BOLD} - Dotfiles Setup     │${RESET}"
+    echo -e "${BOLD}│      ${GREEN}Archdawn${RESET}${BOLD} - Dotfiles Setup  │${RESET}"
     echo -e "${BOLD}╰─────────────────────────────────╯${RESET}"
     echo ""
 
