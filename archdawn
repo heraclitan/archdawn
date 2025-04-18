@@ -57,18 +57,18 @@ link_dotfiles() {
 
 # Main function
 main() {
-    echo -e "${BOLD}╭───────────────────────────────────╮${RESET}"
-    echo -e "${BOLD}│        ${GREEN}Archdawn${RESET}${BOLD} - Dotfiles Setup       │${RESET}"
-    echo -e "${BOLD}╰───────────────────────────────────╯${RESET}"
+    echo -e "${BOLD}╭─────────────────────────────────╮${RESET}"
+    echo -e "${BOLD}│      ${GREEN}Archdawn${RESET}${BOLD} - Dotfiles Setup     │${RESET}"
+    echo -e "${BOLD}╰─────────────────────────────────╯${RESET}"
     echo ""
 
     fetch_dotfiles
     link_dotfiles
 
     echo ""
-    echo -e "${BOLD}╭───────────────────────────────────╮${RESET}"
-    echo -e "${BOLD}│      ${GREEN}✓ Dotfiles Setup Complete${RESET}${BOLD}      │${RESET}"
-    echo -e "${BOLD}╰───────────────────────────────────╯${RESET}"
+    echo -e "${BOLD}╭─────────────────────────────────╮${RESET}"
+    echo -e "${BOLD}│    ${GREEN}✓ Dotfiles Setup Complete${RESET}${BOLD}    │${RESET}"
+    echo -e "${BOLD}╰─────────────────────────────────╯${RESET}"
 }
 
 # Execute
